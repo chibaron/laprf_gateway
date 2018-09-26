@@ -15,8 +15,8 @@ There is a need to specify the IP address in Raspberrypi and WindowsPC. The sett
 
 ## Build & Install
 ```
-$ git clone .....
-$ cd ....
+$ git clone https://github.com/chibaron/lapRF-Gateway
+$ cd lapRF-Gateway
 $ make
 $ sudo cp laprf /usr/local/bin/
 ```
