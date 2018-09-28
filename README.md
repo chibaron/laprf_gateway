@@ -18,15 +18,15 @@ There is a need to specify the IP address in Raspberrypi and WindowsPC. The sett
 $ git clone https://github.com/chibaron/laprf_gateway
 $ cd laprf_gateway
 $ make
-$ sudo cp laprf /usr/local/bin/
+$ sudo cp laprf_gw /usr/local/bin/
 ```
 
 ## Exec
 1. Run LiveTime and set raspberrypi IP address
 1. Connect to Raspberrypi from Windows PC with ssh
-2. Run laprf
+2. Run laprf_gw
 ```
-$ laprf
+$ laprf_gw
 ```
 
 ## Debug Monitor
