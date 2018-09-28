@@ -14,7 +14,7 @@ $(PROGRAM):	$(OBJS)
 clean:;	rm -f *.o *~ $(PROGRAM)
 
 install:    $(PROGRAM)
-    install -s $(PROGRAM) /usr/local/bin
+	install -s $(PROGRAM) /usr/local/bin
 
 
 
