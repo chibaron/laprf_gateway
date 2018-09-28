@@ -6,6 +6,8 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <stdint.h>
+#include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -13,6 +15,8 @@
 #include <time.h>
 #include <fcntl.h>
 #include <termios.h>
+
+#define __STDC_FORMAT_MACROS
 
 #define SOR 0x5a
 #define EOR 0x5b
@@ -61,7 +65,6 @@ uint16_t frame_len = 0;
 
 uint8_t pilotid;
 uint32_t passingNumber;
-uint64_t rtctime;
 
 float minRssi;
 float maxRssi;
@@ -104,7 +107,7 @@ int laprf_protocol_passing(uint8_t *buf, char *message)
                                     ((uint64_t)param->data[7]<<56);
                 time_t t = rtctime/100;
                 strftime(date, sizeof(date), "%Y/%m/%d %a %H:%M:%S", localtime(&t));
-                sprintf(&message[strlen(message)], "%s.%03lld ", date, rtctime%100);
+                sprintf(&message[strlen(message)], "%s.%"PRIu64" ", date, rtctime%100);
             }
             break;
     }
