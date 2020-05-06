@@ -131,6 +131,7 @@ int laprf_protocol(uint8_t *buf, char *message)
 {
  int ret = 0;
  int len = 0;
+ int l;
  frame_t *frame = (frame_t*)buf;
 
     switch(frame->type){
@@ -138,15 +139,19 @@ int laprf_protocol(uint8_t *buf, char *message)
             sprintf(message, "pass:");
             ret = frame->len;
             while((len+8) < frame->len){
-                len += laprf_protocol_passing(&frame->data[len], message);
+                if ( (l = laprf_protocol_passing(&frame->data[len], message)) <= 0)
+                    break;
+                len += l;
             }
             strcat(message, "\r\n");
             break;
         case LAPRF_TOR_STATUS:
-            sprintf(message, "pass:");
+            sprintf(message, "status:");
             ret = frame->len;
             while((len+8) < frame->len){
-                len += laprf_protocol_status(&frame->data[len], message);
+                if ((l = laprf_protocol_status(&frame->data[len], message)) <= 0)
+                   break;
+                len += l;
             }
             strcat(message, "\r\n");
             break;
